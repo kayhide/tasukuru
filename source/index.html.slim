@@ -1,0 +1,50 @@
+---
+title: たすくる
+---
+
+.row
+  .col-md-6
+    .form.form-horizontal
+      .form-group
+        label.col-md-2.control-label for="priority" 優先度
+        .col-md-10
+          - (1..5).each do |i|
+            label for="priority_#{i}"
+              input> id="priority_#{i}" type="radio" value=i data-bind="checked: priority"
+              = i
+            '
+      .form-group
+        label.col-md-2.control-label for="severity" 重要度
+        .col-md-10
+          - (1..5).each do |i|
+            label for="severity_#{i}"
+              input> id="severity_#{i}" type="radio" value=i data-bind="checked: severity"
+              = i
+            '
+      .form-group
+        label.col-md-2.control-label for="what" 何を
+        .col-md-10
+          input.form-control placeholder='何を' data-bind="value: what"
+      .form-group
+        label.col-md-2.control-label for="why" なぜ
+        .col-md-10
+          input.form-control placeholder='なぜ' data-bind="value: why"
+      .form-group
+        label.col-md-2.control-label for="who" 誰が
+        .col-md-10
+          input.form-control placeholder='誰が' data-bind="value: who"
+      .form-group
+        label.col-md-2.control-label for="how" どのように
+        .col-md-10
+          input.form-control placeholder='どのように' data-bind="value: how"
+      .form-group
+        label.col-md-2.control-label for="when" いつまで
+        .col-md-10
+          input.form-control placeholder='いつまで' data-bind="value: when"
+      .form-group
+        label.col-md-2.control-label for="howmuch" いくらで
+        .col-md-10
+          input.form-control placeholder='いくらで' data-bind="value: howmuch"
+  .col-md-6
+      .form-group
+        textarea.form-control rows="10" data-bind="text: output"
