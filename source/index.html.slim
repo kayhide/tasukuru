@@ -2,14 +2,26 @@
 title: たすくる
 ---
 
+
+
+
 .row
   .col-md-6
     .form.form-horizontal
       .form-group
+        label.col-md-2.control-label for="role" 役割
+        .col-md-10
+          label.radio-inline for="role_player"
+            input> id="role_player" type="radio" value="player" data-bind="checked: role"
+            | プレーヤー
+          label.radio-inline for="role_manager"
+            input> id="role_manager" type="radio" value="manager" data-bind="checked: role"
+            | マネージャー
+      .form-group
         label.col-md-2.control-label for="priority" 優先度
         .col-md-10
           - (1..5).each do |i|
-            label for="priority_#{i}"
+            label.radio-inline for="priority_#{i}"
               input> id="priority_#{i}" type="radio" value=i data-bind="checked: priority"
               = i
             '
@@ -17,34 +29,57 @@ title: たすくる
         label.col-md-2.control-label for="severity" 重要度
         .col-md-10
           - (1..5).each do |i|
-            label for="severity_#{i}"
+            label.radio-inline for="severity_#{i}"
               input> id="severity_#{i}" type="radio" value=i data-bind="checked: severity"
               = i
             '
-      .form-group
+      .form-group data-bind="visible: role() == 'player'"
         label.col-md-2.control-label for="what" 何を
         .col-md-10
-          input.form-control placeholder='何を' data-bind="value: what"
-      .form-group
+          input.form-control placeholder="いま何をやっているか？" data-bind="value: what"
+          p.help-block ミュゼ無料カウンセリングの記事50記事を外注
+      .form-group data-bind="visible: role() == 'player'"
         label.col-md-2.control-label for="why" なぜ
         .col-md-10
-          input.form-control placeholder='なぜ' data-bind="value: why"
-      .form-group
+          input.form-control placeholder="なぜそれをやっているか？" data-bind="value: why"
+          p.help-block 夏前で脱毛案件が増えるから
+      .form-group data-bind="visible: role() == 'manager'"
+        label.col-md-2.control-label for="what" 何を
+        .col-md-10
+          input.form-control placeholder="何を" data-bind="value: what"
+          p.help-block ミュゼ無料カウンセリングの記事50記事を外注
+      .form-group data-bind="visible: role() == 'manager'"
+        label.col-md-2.control-label for="why" なぜ
+        .col-md-10
+          input.form-control placeholder="なぜ" data-bind="value: why"
+          p.help-block 夏前で脱毛案件が増えるから
+      .form-group data-bind="visible: role() == 'manager'"
         label.col-md-2.control-label for="who" 誰が
         .col-md-10
           input.form-control placeholder='誰が' data-bind="value: who"
-      .form-group
+          p.help-block 熊谷さん
+      .form-group data-bind="visible: role() == 'manager'"
         label.col-md-2.control-label for="how" どのように
         .col-md-10
           input.form-control placeholder='どのように' data-bind="value: how"
-      .form-group
+          p.help-block ランサーズで外注して
+      .form-group data-bind="visible: role() == 'manager'"
         label.col-md-2.control-label for="when" いつまで
         .col-md-10
           input.form-control placeholder='いつまで' data-bind="value: when"
-      .form-group
+          p.help-block= (Date.today + 14).strftime '%Y/%m/%d'
+      .form-group data-bind="visible: role() == 'manager'"
         label.col-md-2.control-label for="howmuch" いくらで
         .col-md-10
           input.form-control placeholder='いくらで' data-bind="value: howmuch"
+          p.help-block 5000円(1記事100円)
   .col-md-6
+    .panel.panel-default
+      .panel-heading 説明
+      .panel-body
+        p ほげほげ
+
+.row
+  .col-md-12
       .form-group
         textarea.form-control rows="10" data-bind="text: output"

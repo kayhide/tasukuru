@@ -1,5 +1,6 @@
 class TasukuruViewModel
   constructor: ->
+    @role = ko.observable('player')
     @priority = ko.observable('3')
     @severity = ko.observable('3')
     @what = ko.observable('')
@@ -17,15 +18,25 @@ class TasukuruViewModel
   severity_marks: ->
     ('〇' for i in [1..@severity()]).join('')
 
-  update_output: -> """
-    * 優先度: #{@priority_marks()}
-    * 重要度: #{@severity_marks()}
-    * 何を: #{@what()}
-    * なぜ: #{@why()}
-    * 誰が: #{@who()}
-    * どのように: #{@how()}
-    * いつまで: #{@when()}
-    * いくらで: #{@howmuch()}
-    """
+  update_output: ->
+    switch @role()
+      when 'player'
+        """
+        * 優先度: #{@priority_marks()}
+        * 重要度: #{@severity_marks()}
+        * 何を: #{@what()}
+        * なぜ: #{@why()}
+        """
+      when 'manager'
+        """
+        * 優先度: #{@priority_marks()}
+        * 重要度: #{@severity_marks()}
+        * 何を: #{@what()}
+        * なぜ: #{@why()}
+        * 誰が: #{@who()}
+        * どのように: #{@how()}
+        * いつまで: #{@when()}
+        * いくらで: #{@howmuch()}
+        """
 
 @TasukuruViewModel = TasukuruViewModel
